@@ -1,34 +1,26 @@
 package dz1;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class SearcherTest {
 
+    static String homePath;
+
+    @BeforeAll
+    static void beforeAll() {
+        homePath= System.getProperty("user.dir");
+    }
+
+
 
     @Test
     void search_success_with_r_attribute_and_with_dir_name() {
-        assertEquals("C:\\Users\\Andrey\\Desktop\\Java\\DZ\\src\\main\\java\\dz1\\1\\2\\text2.txt",Searcher.search("C:\\Users\\Andrey\\Desktop\\Java\\DZ\\src\\main\\java\\dz1", "text2.txt",true));
-
-    }
-
-    @Test
-    void search_unsuccessful_with_r_attribute_and_with_dir_name() {
-        assertEquals(null,Searcher.search("C:\\Users\\Andrey\\Desktop\\Java\\DZ\\src\\main\\java\\dz1", "text3.txt",true));
-
-    }
-
-
-    @Test
-    void search_success_without_r_attribute_and_with_dir_name() {
-        assertEquals("C:\\Users\\Andrey\\Desktop\\Java\\DZ\\src\\main\\java\\dz1\\text1.txt",Searcher.search("C:\\Users\\Andrey\\Desktop\\Java\\DZ\\src\\main\\java\\dz1", "text1.txt",false));
-
-    }
-
-    @Test
-    void search_unsuccessful_without_r_attribute_and_with_dir_name() {
-        assertEquals(null,Searcher.search("C:\\Users\\Andrey\\Desktop\\Java\\DZ\\src\\main\\java\\dz1", "text2.txt",false));
+        assertTrue( (Searcher.search(homePath,"text1.txt", true, new ArrayList<String>())).contains(homePath +"\\testData\\text1.txt" ));
 
     }
 
