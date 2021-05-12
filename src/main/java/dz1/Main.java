@@ -18,7 +18,7 @@ public class Main {
         //перебираем все элементы массива args(массив входных параметров)
         for(int i =0; i < args.length; i++){
             if((args[i]).equals("-r") ) flagR = true;
-            if((args[i]).equals("-d")){  dir = args[i + 1];}
+            if((args[i]).equals("-d") && args.length - 1  >= i+1 ){  dir = args[i + 1];}
             if( i == (args.length -1)) filename = args[i];
 
         }
@@ -55,6 +55,8 @@ class Searcher {
 
             //проверяем, не пустая ли дирректория
             if (fileArray != null) {
+                System.out.println("Папка пустая!!!");
+                return null;}
 
                 // проверяем значение параметра -r, отвечающего за поиск в поддиректриях. В данном случае в поддиректориях не ищем указанный файл
                 if (r == false) {
@@ -64,7 +66,7 @@ class Searcher {
                         // если перебираемый элемент является файлом(не дирректорией) приступаем к сравнению его имени с именем fileName
                         if (!file.isDirectory()){
 
-                            if((file.getName()).equals((String)fileName)) {
+                            if((file.getName()).equals(fileName)) {
 
                                //возвращаем абсолютный путь файла, если файл найден
                                // System.out.println(file.getAbsolutePath());
@@ -95,7 +97,7 @@ class Searcher {
 
 
                 }
-            } else System.out.println("Папка пустая!!!");
+
 
             return results;
     }
